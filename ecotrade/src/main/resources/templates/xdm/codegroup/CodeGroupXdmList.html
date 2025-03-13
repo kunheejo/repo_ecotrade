@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	
+<div th:replace="~{xdm/include/head ::head}"></div>
+	  
+      <main role="main" class="main-content">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="row">
+                <!-- Small table -->
+                <div class="col-md-12 my-4">
+                  <div class="row">
+                    <div class="col-3">
+                      <span style="color: blue;">Page1</span> > <span style="color: blue;">Page2</span> > Default
+                    </div>
+                    <div class="col-9"></div>
+                  </div>
+          
+                  <div class="row">
+                    <div class="col-3">
+                      <h2><b>Code Group</b> </h2>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-2">
+                      <select class="custom-select mr-sm-2" aria-label="Large select example">
+                        <option selected>N</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+                   
+                    <div class="col-2">
+                      <select class="custom-select mr-sm-2" aria-label="Large select example">
+                        <option selected>Y</option>   
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+
+                    <div class="col-2">
+                      <select class="custom-select mr-sm-2" aria-label="Large select example">
+                        <option selected>날짜</option>
+                        <option value="1">등록일</option>
+                        <option value="2">수정일</option>
+                      </select>
+                    </div>
+
+                    <div class="col-2">
+                      <input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="2024-12-25" aria-label="Disabled input example" disabled>                    
+                    </div>
+
+                    <div class="col-2">
+                      <input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="2025-01-24" aria-label="Disabled input example" disabled>                    
+                    </div>
+                  </div>
+
+<br>
+
+                  <div class="row">
+                    <div class="col-2">
+                      <select class="custom-select mr-sm-2" aria-label="Large select example">
+                        <option selected>검색구분</option>
+                        <option value="1">코드그룹 코드</option>
+                        <option value="2">코드그룹 이름</option>
+                        <option value="3">코드그룹 이름(영문)</option>
+                      </select>
+                    </div>
+
+                    <div class="col-2">
+                      <input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="검색어 입력" aria-label="Disabled input example">         
+                    </div>
+
+                    <div class="col-2">
+                      <button type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="27" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                      </button>
+                      &nbsp;
+                      <button type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="27" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+                          <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+                        </svg>
+                      </button>
+                    </div> 
+                  </div>
+                  <br>
+
+
+
+
+                  <div class="card shadow">
+                    <div class="card-body">
+                      <div class="toolbar">
+                        <form class="form">
+                          <div class="form-row">
+                            <div class="form-group col-auto mr-auto">
+                              <label class="my-1 mr-2 sr-only" for="inlineFormCustomSelectPref1">Show</label>
+                               Total:42
+                            </div>
+                            <div class="form-group col-auto">
+                              <select class="custom-select mr-sm-2" id="inlineFormCustomSelectPref1">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5" selected>5</option>
+                              </select>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <!-- table -->
+                      <table class="table table-borderless table-hover">
+                        <thead>
+                          <tr>
+                            <td>
+                              <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="all2">
+                                <label class="custom-control-label" for="all2"></label>
+                              </div>
+                            </td>
+                            <th>#</th>
+                            <th>사용</th>
+                            <th>코드그룹 코드</th>
+                            <th>코드그룹 이름</th>
+                            <th>코드그룹 이름(영문)</th>
+                            <th>갯수</th>
+                            <th>순서</th>
+                            <th>등록일</th>
+                            <th>수정일</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr th:if="${#lists.isEmpty(list)}" class=""hover-action-trigger btn-reval-trigger position-static>
+                            <td colspan="10">
+                            <p class="fs-0" style="padding-top: 12px;">There are no datal</p>
+                            </td>
+                          </tr>
+                          <tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
+                            <td>
+                              <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="2474">
+                                <label class="custom-control-label" for="2474"></label>
+                              </div>
+                            </td>
+                            <td th:text="${list.cgseq}"></td>
+                            <td th:text="${list.cgUseNy}"></td>
+                            <td th:text="${list.cgAnotherseq}"></td>
+                            <td th:text="${list.cgName}"></td>
+                            <td th:text="${list.cgNameEng}"></td>
+                            <td></td>
+                            <td th:text="${list.cgNum}"></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                           
+                           
+                           
+                          
+                           
+                           
+                        </tbody>
+                      </table>
+
+
+                      <div class="row"> 
+                      <div class="col-2">
+                        <div>
+                          <button type="button" class="btn btn-outline-danger">
+                            x
+                          </button>
+                          <button type="button" class="btn btn-outline-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="col-7"> 
+                      <nav aria-label="Table Paging" class="mb-0 text-muted">
+                        <ul class="pagination justify-content-center mb-0">
+                          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                      </nav>
+                     </div>
+
+                     <div class="col-3">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-outline-primary">
+                      U
+                    </button>
+                    <button type="button" class="btn btn-outline-success">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2-x" viewBox="0 0 16 16">
+                        <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                        <path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5z"/>
+                        <path d="M8 8.293 6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708z"/>
+                      </svg>
+                    </button>
+                    <a href="/codegroup/codegroupXdmForm"> 
+                    <button type="button" class="btn btn-outline-primary">
+                      +
+                    </button>
+                  </a>
+                  </div>
+
+                    </div>
+
+
+
+
+                    </div>
+                  </div>
+                </div> <!-- customized table -->
+              </div> <!-- end section -->
+               
+               
+            </div> <!-- .col-12 -->
+          </div> <!-- .row -->
+        </div> <!-- .container-fluid -->
+        <div class="modal fade modal-notif modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Notifications</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="list-group list-group-flush my-n3">
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-box fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Package has uploaded successfull</strong></small>
+                        <div class="my-0 text-muted small">Package is zipped and uploaded</div>
+                        <small class="badge badge-pill badge-light text-muted">1m ago</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-download fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Widgets are updated successfull</strong></small>
+                        <div class="my-0 text-muted small">Just create new layout Index, form, table</div>
+                        <small class="badge badge-pill badge-light text-muted">2m ago</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-inbox fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Notifications have been sent</strong></small>
+                        <div class="my-0 text-muted small">Fusce dapibus, tellus ac cursus commodo</div>
+                        <small class="badge badge-pill badge-light text-muted">30m ago</small>
+                      </div>
+                    </div> <!-- / .row -->
+                  </div>
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-link fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Link was attached to menu</strong></small>
+                        <div class="my-0 text-muted small">New layout has been attached to the menu</div>
+                        <small class="badge badge-pill badge-light text-muted">1h ago</small>
+                      </div>
+                    </div>
+                  </div> <!-- / .row -->
+                </div> <!-- / .list-group -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Clear All</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade modal-shortcut modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Shortcuts</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body px-5">
+                <div class="row align-items-center">
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-success justify-content-center">
+                      <i class="fe fe-cpu fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Control area</p>
+                  </div>
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-activity fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Activity</p>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-droplet fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Droplet</p>
+                  </div>
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-upload-cloud fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Upload</p>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-users fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Users</p>
+                  </div>
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-settings fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Settings</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main> <!-- main -->
+    </div> <!-- .wrapper -->
+    <script src="/xdm/template/tiny/light/js/jquery.min.js"></script>
+    <script src="/xdm/template/tiny/light/js/popper.min.js"></script>
+    <script src="/xdm/template/tiny/light/js/moment.min.js"></script>
+    <script src="/xdm/template/tiny/light/js/bootstrap.min.js"></script>
+    <script src="/xdm/template/tiny/light/js/simplebar.min.js"></script>
+    <script src='/xdm/template/tiny/light/js/daterangepicker.js'></script>
+    <script src='/xdm/template/tiny/light/js/jquery.stickOnScroll.js'></script>
+    <script src="/xdm/template/tiny/light/js/tinycolor-min.js"></script>
+    <script src="/xdm/template/tiny/light/js/config.js"></script>
+    <script src='/xdm/template/tiny/light/js/jquery.dataTables.min.js'></script>
+    <script src='js/dataTables.bootstrap4.min.js'></script>
+    <script>
+      $('#dataTable-1').DataTable(
+      {
+        autoWidth: true,
+        "lengthMenu": [
+          [16, 32, 64, -1],
+          [16, 32, 64, "All"]
+        ]
+      });
+    </script>
+    <script src="js/apps.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag()
+      {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-56159088-1');
+    </script>
+  </body>
+</html>
