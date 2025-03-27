@@ -11,6 +11,8 @@ public class CodeGroupDto {
 	private Integer cgNum;
 	private String cgExplanation;
 	private Integer cgDelNy;
+	private Integer xifcdSeqCount;
+	 
 	//=============
 	public String getCgseq() {
 		return cgseq;
@@ -60,6 +62,11 @@ public class CodeGroupDto {
 	public void setCgDelNy(Integer cgDelNy) {
 		this.cgDelNy = cgDelNy;
 	}
-	
+	public Integer getXifcdSeqCount() {
+		return xifcdSeqCount;
+	}
+	public void setXifcdSeqCount(Integer xifcdSeqCount) {
+		this.xifcdSeqCount = xifcdSeqCount;
+	}
 	
 }

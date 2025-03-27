@@ -3,7 +3,7 @@
 	
 <div th:replace="~{xdm/include/head ::head}"></div>
 	  
-      <main role="main" class="main-content"> 
+<main role="main" class="main-content">
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-12">
@@ -19,35 +19,34 @@
           
                   <div class="row">
                     <div class="col-3">
-                      <h2><b>Code Group</b> </h2>
+                      <h2><b>회원</b> </h2>
                     </div>
                   </div>
                   
 				  
 				  <form name="formList" id="formList" method="post" autocomplete="off">
-				  			<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
-				  			<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
+				  			  			<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+				  			  			<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
+										<input type="hidden" name="useq" >
+				  			  
+				  	<script>
+				  			let form = document.querySelector("form[name=formList]");
+				  				goList = function (thisPage) {
+				  				document.querySelector("input[name=thisPage]").value = thisPage;
+				  				form.action = "/user/userXdmList";
+				  				form.submit();
+				  				}
+				  	</script>
 				  
-				<script>
-						let form = document.querySelector("form[name=formList]");
-							goList = function (thisPage) {
-							document.querySelector("input[name=thisPage]").value = thisPage;
-							form.action = "/codegroup/codegroupXdmList";
-							form.submit();
-							}
-							
-							
-				</script>
-				
-									
+				  
+				  
                   <div class="row">
                     <div class="col-2">
-						<select id="shDelNy" name="shDelNy" class="custom-select mr-sm-2" aria-label="Large select example">
-							<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
-							<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
-							<option value="0" th:selected="${vo.shDelNy == 0}">N</option>            
-						</select>
-                      
+                      <select id="shDelNy" name="shDelNy"  class="custom-select mr-sm-2" aria-label="Large select example">
+						<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
+						<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
+						<option value="0" th:selected="${vo.shDelNy == 0}">N</option>  
+                      </select>
                     </div>
                    
                     <div class="col-2">
@@ -67,13 +66,11 @@
                     </div>
 
                     <div class="col-2">
-                     <input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="2024-12-25" aria-label="Disabled input example" disabled>                   
-					  <!--<input type="text" id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일" class="form-control" style="height: 35px; width: 170x;" autocomplete="off">-->
-					  </div>
+                      <input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="2024-12-25" aria-label="Disabled input example" disabled>                    
+                    </div>
 
                     <div class="col-2">
-                      <input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="2025-01-24" aria-label="Disabled input example" disabled>
-					 <!-- <input type="text" id="shDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일" class="form-control" style="height: 35px; width: 170x;" autocomplete="off"> -->                 
+                      <input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="2025-01-24" aria-label="Disabled input example" disabled>                    
                     </div>
                   </div>
 
@@ -83,17 +80,17 @@
                     <div class="col-2">
                       <select id="shOption" name="shOption" class="custom-select mr-sm-2" aria-label="Large select example">
 						<option value="" th:selected="${vo.shOption == null}">검색구분</option>
-						<option value="1" th:selected="${vo.shOption == 1}">코드그룹 코드</option>
-						<option value="2" th:selected="${vo.shOption == 2}">코드그룹 이름</option>
-						<option value="3" th:selected="${vo.shOption == 3}">코드그룹 이름 (영문)</option>
+												<option value="1" th:selected="${vo.shOption == 1}">코드</option>
+												<option value="2" th:selected="${vo.shOption == 2}">이름</option>
+												<option value="3" th:selected="${vo.shOption == 3}">등록물품</option>
                       </select>
                     </div>
 
                     <div class="col-2">
-                      <!--<input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="검색어 입력" aria-label="Disabled input example">-->         
-					  <input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control" style="height: 35px; width: 170x;">
-					  	<div class="invalid-feedback" id="shValueFeedback"></div>
-                    </div>
+                     <!-- <input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="검색어 입력" aria-label="Disabled input example">         -->
+					 <input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control" style="height: 35px; width: 170x;">
+ 					  	<div class="invalid-feedback" id="shValueFeedback"></div>
+					 </div>
 
                     <div class="col-2">
                       <button type="button" id="btnSearch">
@@ -112,13 +109,14 @@
                   </div>
                   <br>
 
-				  <script>
-					document.getElementById("btnSearch").onclick = function () {
-					    form.action =  "/codegroup/codegroupXdmList";
-					    form.submit();
-					};
-				  </script>
 
+				  
+				  <script>
+  					document.getElementById("btnSearch").onclick = function () {
+  					    form.action =  "/user/userXdmList";
+  					    form.submit();
+  					};
+  				  </script>
 
 
                   <div class="card shadow">
@@ -128,7 +126,7 @@
                           <div class="form-row">
                             <div class="form-group col-auto mr-auto">
                               <label class="my-1 mr-2 sr-only" for="inlineFormCustomSelectPref1">Show</label>
-                               Total: <span th:text="${vo.totalRows}"></span>
+                               Total:<span th:text="${vo.totalRows}"></span>
                             </div>
                             <div class="form-group col-auto">
                               <select class="custom-select mr-sm-2" id="changeRowNum" name="changeRowNum">
@@ -137,7 +135,7 @@
 								<option value="30" th:selected="${vo.rowNumToShow eq 30}">30</option>
 								<option value="50" th:selected="${vo.rowNumToShow eq 50}">50</option>
 								<option value="80" th:selected="${vo.rowNumToShow eq 80}">80</option>
-								<option value="100" th:selected="${vo.rowNumToShow eq 100}">100</option>       
+								<option value="100" th:selected="${vo.rowNumToShow eq 100}">100</option>  
                               </select>
                             </div>
                           </div>
@@ -145,13 +143,12 @@
                       </div>
                       <!-- table -->
 					  <script>
-						document.getElementById("changeRowNum").onchange = function () {
-						    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
-						    form.action ="/codegroup/codegroupXdmList";
-						    form.submit();
-						}
-					  </script>
-					  
+  						document.getElementById("changeRowNum").onchange = function () {
+  						    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
+  						    form.action ="/user/userXdmList";
+  						    form.submit();
+  						}
+  					  </script>
 					  
 					  
 					  
@@ -160,44 +157,49 @@
                           <tr>
                             <th>
                               <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="cgselect-all">
-                                <label class="custom-control-label" for="cgselect-all"></label>
+                                <input type="checkbox" class="custom-control-input" id="uselect-all">
+                                <label class="custom-control-label" for="uselect-all"></label>
                               </div>
                             </th>
                             <th>#</th>
                             <th>사용</th>
-                            <th>코드그룹 코드</th>
-                            <th>코드그룹 이름</th>
-                            <th>코드그룹 이름(영문)</th>
-                            <th>갯수</th>
-                            <th>순서</th>
+                            <th>코드</th>
+                            <th>이름</th>
+                            <th>휴대폰 번호</th>
+                            <th>성별</th>
+                            <th>등록 물품</th>
+                            <th>아이디(email)</th>
+                            <th>비밀번호</th>
                             <th>등록일</th>
                             <th>수정일</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr th:if="${#lists.isEmpty(list)}" class="hover-action-trigger btn-reval-trigger position-static">
-                            <td colspan="10">
-                            <p class="fs-0" style="padding-top: 12px;">There are no datal</p>
-                            </td>
-                          </tr>
-                          <tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
-                            <td>
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" th:id="${list.cgseq}">
-                                <label class="custom-control-label" th:for="${list.cgseq}"></label>
-                              </div>
-                            </td>
-                            <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-                            <td th:text="${list.cgUseNy}"></td>
-                            <td th:text="${list.cgseq}"></td>
-                            <td th:text="${list.cgName}"></td>
-                            <td th:text="${list.cgNameEng}"></td>
-                            <td th:text="${list.xifcdSeqCount}"></td>
-                            <td th:text="${list.cgNum}"></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
+							<tr th:if="${#lists.isEmpty(list)}" class="hover-action-trigger btn-reval-trigger position-static">
+	                            <td colspan="10">
+	                            <p class="fs-0" style="padding-top: 12px;">There are no datal</p>
+	                            </td>
+	                          </tr>
+	                          <tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
+	                            <td>
+	                              <div class="custom-control custom-checkbox">
+	                                <input type="checkbox" class="custom-control-input" th:id="${list.useq}">
+	                                <label class="custom-control-label" th:for="${list.useq}"></label>
+	                              </div>
+	                            </td>
+
+	                            <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
+	                            <td th:text="${list.uUseNy}"></td>
+								<td th:text="${list.useq}"></td>
+								<td class="uName align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.uName}" th:attr="onclick=|goForm('${list.useq}')|"></a></td>
+								<td th:text="${list.uPhoneNum}"></td>
+								<td th:text="${@codeService.selectOneCachedCode(list.uGender)}"></td>
+								<td th:text="${list.uItem}"></td>
+	                            <td th:text="${list.uIdEmail}"></td>
+	                            <td th:text="${list.uPassword}"></td>
+	                            <td></td>
+	                            <td></td>
+	                          </tr>
                            
                            
                            
@@ -206,49 +208,55 @@
                            
                         </tbody>
                       </table>
+
 					  
 					  
 					  
 					  <script>
-						document.addEventListener("DOMContentLoaded", function () {
-						  // 전체 선택 체크박스
-						  const selectAllCheckbox = document.getElementById("cgselect-all");
-						  
-						  // 모든 체크박스 요소
-						  const checkboxes = document.querySelectorAll("input[type='checkbox']:not(#cgselect-all)");
+						 
+						
+						
+						
+						
+						
+					  					document.addEventListener("DOMContentLoaded", function () {
+					  					  // 전체 선택 체크박스
+					  					  const selectAllCheckbox = document.getElementById("uselect-all");
+					  					  
+					  					  // 모든 체크박스 요소
+					  					  const checkboxes = document.querySelectorAll("input[type='checkbox']:not(#uselect-all)");
 
-						  // 전체 선택 체크박스 클릭 이벤트
-						  selectAllCheckbox.addEventListener("change", function () {
-						    checkboxes.forEach(function (checkbox) {
-						      checkbox.checked = selectAllCheckbox.checked;
-						    });
-						  });
+					  					  // 전체 선택 체크박스 클릭 이벤트
+					  					  selectAllCheckbox.addEventListener("change", function () {
+					  					    checkboxes.forEach(function (checkbox) {
+					  					      checkbox.checked = selectAllCheckbox.checked;
+					  					    });
+					  					  });
 
-						  // 각 항목 체크박스 클릭 이벤트
-						  checkboxes.forEach(function (checkbox) {
-						    checkbox.addEventListener("change", function () {
-						      updateSelectAllCheckboxState();
-						    });
-						  });
+					  					  // 각 항목 체크박스 클릭 이벤트
+					  					  checkboxes.forEach(function (checkbox) {
+					  					    checkbox.addEventListener("change", function () {
+					  					      updateSelectAllCheckboxState();
+					  					    });
+					  					  });
 
-						  // 전체 선택 체크박스 상태 업데이트 함수
-						  function updateSelectAllCheckboxState() {
-						    const totalCheckboxes = checkboxes.length;
-						    const checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+					  					  // 전체 선택 체크박스 상태 업데이트 함수
+					  					  function updateSelectAllCheckboxState() {
+					  					    const totalCheckboxes = checkboxes.length;
+					  					    const checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
 
-						    if (checkedCheckboxes === totalCheckboxes) {
-						      // 모든 체크박스가 체크됨
-						      selectAllCheckbox.checked = true;
-						      selectAllCheckbox.indeterminate = false; // 중간 상태 해제
-						    }   else {
-						      // 모든 체크박스가 체크되지 않음
-						      selectAllCheckbox.checked = false;
-						      selectAllCheckbox.indeterminate = false;
-						    }
-						  }
-						});
-					  </script>
-
+					  					    if (checkedCheckboxes === totalCheckboxes) {
+					  					      // 모든 체크박스가 체크됨
+					  					      selectAllCheckbox.checked = true;
+					  					      selectAllCheckbox.indeterminate = false; // 중간 상태 해제
+					  					    }   else {
+					  					      // 모든 체크박스가 체크되지 않음
+					  					      selectAllCheckbox.checked = false;
+					  					      selectAllCheckbox.indeterminate = false;
+					  					    }
+					  					  }
+					  					});
+					  				  </script>
 
                       <div class="row"> 
                       <div class="col-2">
@@ -265,30 +273,24 @@
                         </div>
                       </div>
 
-					  
-					   
-					  
-					  
                       <div class="col-7"> 
-						 
-		                      <nav aria-label="Table Paging" class="mb-0 text-muted">
-		                        <ul class="pagination justify-content-center mb-0;  ">
-									<li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;">
-										<a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|">
-											<i class="fa-solid fa-angle-left"></i>
-										</a>
-									</li>
-									<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
-										<a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a>
-									</li>
-									<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;">
-										<a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|">
-											<i class="fa-solid fa-angle-right"></i>
-										</a>
-									</li>
-		                        </ul>
-		                      </nav>
-						
+                      <nav aria-label="Table Paging" class="mb-0 text-muted">
+                        <ul class="pagination justify-content-center mb-0;  ">
+							<li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;">
+								<a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|">
+									<i class="fa-solid fa-angle-left"></i>
+								</a>
+							</li>
+							<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
+								<a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a>
+							</li>
+							<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;">
+								<a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|">
+									<i class="fa-solid fa-angle-right"></i>
+								</a>
+							</li>
+                        </ul>
+                      </nav>
                      </div>
 
                      <div class="col-3">
@@ -303,8 +305,8 @@
                         <path d="M8 8.293 6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708z"/>
                       </svg>
                     </button>
-                    <a href="/codegroup/codegroupXdmForm"> 
-                    <button type="button" class="btn btn-outline-primary">
+                    <a href="/user/userXdmForm"> 
+                    <button type="button" id="btnForm" class="btn btn-outline-primary">
                       +
                     </button>
                   </a>
@@ -313,6 +315,20 @@
                     </div>
 
 
+					<script>
+						let seq = document.querySelector("input[name=useq]");	
+						document.getElementById("btnForm").onclick = function () {
+						    goForm(0);
+						}
+
+
+						goForm = function (keyValue) {
+						    seq.value = keyValue;
+		 
+						    form.action = "/user/userXdmMfom";
+						    form.submit();
+						}
+					</script>
 
 
                     </div>
@@ -448,7 +464,6 @@
           </div>
         </div>
       </main> <!-- main -->
-	
     </div> <!-- .wrapper -->
     <script src="/xdm/template/tiny/light/js/jquery.min.js"></script>
     <script src="/xdm/template/tiny/light/js/popper.min.js"></script>
@@ -461,6 +476,9 @@
     <script src="/xdm/template/tiny/light/js/config.js"></script>
     <script src='/xdm/template/tiny/light/js/jquery.dataTables.min.js'></script>
     <script src='/xdm/template/tiny/light/js/dataTables.bootstrap4.min.js'></script>
+	<script src='/xdm/template/tiny/light/jquery/jquery-3.7.1.min.js'></script>
+	<script src='/xdm/template/tiny/light/js/jquery.validate.min.js'></script>
+
     <script>
       $('#dataTable-1').DataTable(
       {

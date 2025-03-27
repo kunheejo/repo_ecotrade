@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<div th:replace="~{xdm/include/head ::head}"></div>
+   
+    <main role="main" class="main-content">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-3">
+                  <span style="color: blue;">Page1</span> > <span style="color: blue;">Page2</span> > Default
+                </div>
+                <div class="col-9"></div>
+              </div>
+      
+              <div class="row">
+                <div class="col-3">
+                  <h2><b>Code</b> </h2>
+                </div>
+              </div>
+
+
+              <div class="card shadow mb-4">
+                <div class="card-header">
+                  <strong class="card-title">기본정보</strong>
+                </div>
+                <div class="card-body">
+
+					<form action="/code/codeXdmInst" method="post" id="form">
+                  <div class="row">
+                    <div class="col-3">
+                      <label>코드그룹<span style="color: red;">*</span></label>
+                      <select class="custom-select mr-sm-2" aria-label="Default select example" name="codeGroup_cgseq" id="codeGroup_cgseq">
+						<option th:each="item : ${list}" 
+						            th:value="${item.cgseq}" 
+						            th:text="${item.cgName}"> <!-- cgseq와 codeGroup_name을 바인딩 -->
+						    </option>
+						  
+                      </select>
+                     </div>
+                  </div>
+
+                  <br>
+
+                  <div class="row">
+                      <div class="col-3">
+                        <label for="simpleinput">코드<span style="color: red;">*</span></label>
+                        <input type="text" name="cdseq" id="cdseq"  class="form-control" placeholder="자동생성" disabled>
+                      </div>
+                      <div class="col-3">
+                        <label for="simpleinput">코드 (ANOTHER)</label>
+                        <input type="text" name="cdAnotherseq" id="cdAnotherseq"  class="form-control" placeholder="영대소문자,숫자">
+                      </div>
+                      <div class="col-3">
+                        <label for="simpleinput">코드 이름<span style="color: red;">*</span></label>
+                        <input type="text" name="cdName" id="cdName" class="form-control" placeholder="한글영대소문자,숫자">
+                      </div>
+                      <div class="col-3">
+                        <label for="simpleinput">코드 이름 (영문)</label>
+                        <input type="text" name="cdNameEng" id="cdNameEng" class="form-control" placeholder="영대소문자,숫자">
+                      </div>
+                  </div>
+<br>
+                  <div class="row">
+                    <div class="col-3">
+                      <label>사용여부<span style="color: red;">*</span></label>
+                      <select class="custom-select mr-sm-2" aria-label="Default select example" name="cdUseNy" id="cdUseNy">
+						  <option selected>선택하세요</option>
+                          <option value="1">사용</option>
+                          <option value="0">미사용</option>
+                      </select>
+                     </div>
+                    <div class="col-3">
+                      <label for="simpleinput">순서<span style="color: red;">*</span></label>
+                      <input type="text" name="cdNum" id="cdNum" class="form-control">
+                    </div>  
+                </div>
+
+<br>
+
+                  <div class="row">
+                    <div class="col-6">
+                      <label for="example-textarea">설명</label>
+                      <textarea class="form-control" name="cdExplanation" id="cdExplanation" rows="4"></textarea>
+                    </div>
+                  </div>
+              
+<br>
+                
+                  <div class="row"> 
+                    <div class="col-2">
+                      <a href="/code/codeXdmList"> 
+                      
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                        </svg>
+                      
+                    </a>
+                    </div>
+                    <div class="col-8"></div>
+                    <div class="col-2">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                       
+                      <button type="button" id="btsSave">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-database" viewBox="0 0 16 16" >
+                          <path d="M4.318 2.687C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4c0-.374.356-.875 1.318-1.313M13 5.698V7c0 .374-.356.875-1.318 1.313C10.766 8.729 9.464 9 8 9s-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777A5 5 0 0 0 13 5.698M14 4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13zm-1 4.698V10c0 .374-.356.875-1.318 1.313C10.766 11.729 9.464 12 8 12s-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777A5 5 0 0 0 13 8.698m0 3V13c0 .374-.356.875-1.318 1.313C10.766 14.729 9.464 15 8 15s-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13s3.022-.289 4.096-.777c.324-.147.633-.323.904-.525"/>
+                        </svg>
+                      </button>
+                    </form>
+					<script type="text/javascript">
+	                    document.getElementById("btsSave").onclick = function(){
+	                      document.getElementById("form").submit();
+	                    }
+                  </script>
+                    </div>
+                  </div>
+
+                </div>
+                 
+              </div> <!-- / .card -->
+            </div> <!-- .col-12 -->
+          </div> <!-- .row -->
+        </div> <!-- .container-fluid -->
+        <div class="modal fade modal-notif modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Notifications</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="list-group list-group-flush my-n3">
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-box fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Package has uploaded successfull</strong></small>
+                        <div class="my-0 text-muted small">Package is zipped and uploaded</div>
+                        <small class="badge badge-pill badge-light text-muted">1m ago</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-download fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Widgets are updated successfull</strong></small>
+                        <div class="my-0 text-muted small">Just create new layout Index, form, table</div>
+                        <small class="badge badge-pill badge-light text-muted">2m ago</small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-inbox fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Notifications have been sent</strong></small>
+                        <div class="my-0 text-muted small">Fusce dapibus, tellus ac cursus commodo</div>
+                        <small class="badge badge-pill badge-light text-muted">30m ago</small>
+                      </div>
+                    </div> <!-- / .row -->
+                  </div>
+                  <div class="list-group-item bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <span class="fe fe-link fe-24"></span>
+                      </div>
+                      <div class="col">
+                        <small><strong>Link was attached to menu</strong></small>
+                        <div class="my-0 text-muted small">New layout has been attached to the menu</div>
+                        <small class="badge badge-pill badge-light text-muted">1h ago</small>
+                      </div>
+                    </div>
+                  </div> <!-- / .row -->
+                </div> <!-- / .list-group -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Clear All</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade modal-shortcut modal-slide" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Shortcuts</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body px-5">
+                <div class="row align-items-center">
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-success justify-content-center">
+                      <i class="fe fe-cpu fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Control area</p>
+                  </div>
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-activity fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Activity</p>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-droplet fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Droplet</p>
+                  </div>
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-upload-cloud fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Upload</p>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-users fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Users</p>
+                  </div>
+                  <div class="col-6 text-center">
+                    <div class="squircle bg-primary justify-content-center">
+                      <i class="fe fe-settings fe-32 align-self-center text-white"></i>
+                    </div>
+                    <p>Settings</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main> <!-- main -->
+    </div> <!-- .wrapper -->
+    <script src="/xdm/template/tiny/light/js/jquery.min.js"></script>
+    <script src="/xdm/template/tiny/light/js/popper.min.js"></script>
+    <script src="/xdm/template/tiny/light/js/moment.min.js"></script>
+    <script src="/xdm/template/tiny/light/js/bootstrap.min.js"></script>
+    <script src="/xdm/template/tiny/light/js/simplebar.min.js"></script>
+    <script src='/xdm/template/tiny/light/js/daterangepicker.js'></script>
+    <script src='/xdm/template/tiny/light/js/jquery.stickOnScroll.js'></script>
+    <script src="/xdm/template/tiny/light/js/tinycolor-min.js"></script>
+    <script src="/xdm/template/tiny/light/js/config.js"></script>
+    <script src="/xdm/template/tiny/light/js/apps.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag()
+      {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-56159088-1');
+    </script>
+  </body>
+</html>

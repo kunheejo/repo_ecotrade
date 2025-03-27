@@ -3,7 +3,7 @@
 	
 <div th:replace="~{xdm/include/head ::head}"></div>
 	  
-      <main role="main" class="main-content"> 
+<main role="main" class="main-content">
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-12">
@@ -19,61 +19,59 @@
           
                   <div class="row">
                     <div class="col-3">
-                      <h2><b>Code Group</b> </h2>
+                      <h2><b>Code</b> </h2>
                     </div>
                   </div>
                   
 				  
 				  <form name="formList" id="formList" method="post" autocomplete="off">
-				  			<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
-				  			<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
+				  			  			<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+				  			  			<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
+				  			  
+				  	<script>
+				  			let form = document.querySelector("form[name=formList]");
+				  				goList = function (thisPage) {
+				  				document.querySelector("input[name=thisPage]").value = thisPage;
+				  				form.action = "/code/codeXdmList";
+				  				form.submit();
+				  				}
+				  	</script>
 				  
-				<script>
-						let form = document.querySelector("form[name=formList]");
-							goList = function (thisPage) {
-							document.querySelector("input[name=thisPage]").value = thisPage;
-							form.action = "/codegroup/codegroupXdmList";
-							form.submit();
-							}
-							
-							
-				</script>
-				
-									
+				  
+				  
                   <div class="row">
                     <div class="col-2">
-						<select id="shDelNy" name="shDelNy" class="custom-select mr-sm-2" aria-label="Large select example">
-							<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
-							<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
-							<option value="0" th:selected="${vo.shDelNy == 0}">N</option>            
-						</select>
-                      
+                      <select class="custom-select mr-sm-2" aria-label="Large select example">
+                        <option selected>N</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
                     </div>
                    
                     <div class="col-2">
-                      <select name="shUseNy" id="shUseNy" class="custom-select mr-sm-2" aria-label="Large select example">
-						<option value="" th:selected="${vo.shUseNy == null}">사용여부</option>
-						<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
-						<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
+                      <select class="custom-select mr-sm-2" aria-label="Large select example">
+                        <option selected>Y</option>   
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
                       </select>
                     </div>
 
                     <div class="col-2">
-                      <select id="shOptionDate" name="shOptionDate" class="custom-select mr-sm-2" aria-label="Large select example">
-						<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
-						<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
-						<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
+                      <select class="custom-select mr-sm-2" aria-label="Large select example">
+                        <option selected>날짜</option>
+                        <option value="1">등록일</option>
+                        <option value="2">수정일</option>
                       </select>
                     </div>
 
                     <div class="col-2">
-                     <input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="2024-12-25" aria-label="Disabled input example" disabled>                   
-					  <!--<input type="text" id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일" class="form-control" style="height: 35px; width: 170x;" autocomplete="off">-->
-					  </div>
+                      <input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="2024-12-25" aria-label="Disabled input example" disabled>                    
+                    </div>
 
                     <div class="col-2">
-                      <input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="2025-01-24" aria-label="Disabled input example" disabled>
-					 <!-- <input type="text" id="shDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일" class="form-control" style="height: 35px; width: 170x;" autocomplete="off"> -->                 
+                      <input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="2025-01-24" aria-label="Disabled input example" disabled>                    
                     </div>
                   </div>
 
@@ -81,28 +79,29 @@
 
                   <div class="row">
                     <div class="col-2">
-                      <select id="shOption" name="shOption" class="custom-select mr-sm-2" aria-label="Large select example">
-						<option value="" th:selected="${vo.shOption == null}">검색구분</option>
-						<option value="1" th:selected="${vo.shOption == 1}">코드그룹 코드</option>
-						<option value="2" th:selected="${vo.shOption == 2}">코드그룹 이름</option>
-						<option value="3" th:selected="${vo.shOption == 3}">코드그룹 이름 (영문)</option>
+                      <select class="custom-select mr-sm-2" aria-label="Large select example" >
+                        <option selected>검색구분</option>
+                        <option value="1">코드그룹 코드</option>
+                        <option value="2">코드그룹 이름</option>
+                        <option value="3">코드</option>
+                        <option value="5">대체 코드</option>
+                        <option value="6">코드 이름</option>
+                        <option value="7">코드 이름(영문)</option>
                       </select>
                     </div>
 
                     <div class="col-2">
-                      <!--<input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="검색어 입력" aria-label="Disabled input example">-->         
-					  <input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control" style="height: 35px; width: 170x;">
-					  	<div class="invalid-feedback" id="shValueFeedback"></div>
+                      <input class="form-control" style="height: 35px; width: 170x;" type="text" placeholder="검색어 입력" aria-label="Disabled input example">         
                     </div>
 
                     <div class="col-2">
-                      <button type="button" id="btnSearch">
+                      <button type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="27" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                           <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                         </svg>
                       </button>
                       &nbsp;
-                      <button type="button" id="btnReset">
+                      <button type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="27" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
                           <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
                           <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
@@ -112,12 +111,6 @@
                   </div>
                   <br>
 
-				  <script>
-					document.getElementById("btnSearch").onclick = function () {
-					    form.action =  "/codegroup/codegroupXdmList";
-					    form.submit();
-					};
-				  </script>
 
 
 
@@ -128,76 +121,69 @@
                           <div class="form-row">
                             <div class="form-group col-auto mr-auto">
                               <label class="my-1 mr-2 sr-only" for="inlineFormCustomSelectPref1">Show</label>
-                               Total: <span th:text="${vo.totalRows}"></span>
+                               Total:<span th:text="${vo.totalRows}"></span>
                             </div>
                             <div class="form-group col-auto">
-                              <select class="custom-select mr-sm-2" id="changeRowNum" name="changeRowNum">
-								<option value="5" th:selected="${vo.rowNumToShow eq 5}">5</option>
-								<option value="10" th:selected="${vo.rowNumToShow eq 10}">10</option>
-								<option value="30" th:selected="${vo.rowNumToShow eq 30}">30</option>
-								<option value="50" th:selected="${vo.rowNumToShow eq 50}">50</option>
-								<option value="80" th:selected="${vo.rowNumToShow eq 80}">80</option>
-								<option value="100" th:selected="${vo.rowNumToShow eq 100}">100</option>       
+                              <select class="custom-select mr-sm-2" id="inlineFormCustomSelectPref1">
+								<option value="1" selected>5</option>
+								<option value="2">10</option>
+								<option value="3">20</option>
+								<option value="4">30</option>
+								<option value="5">40</option>
                               </select>
                             </div>
                           </div>
                         </form>
                       </div>
                       <!-- table -->
-					  <script>
-						document.getElementById("changeRowNum").onchange = function () {
-						    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
-						    form.action ="/codegroup/codegroupXdmList";
-						    form.submit();
-						}
-					  </script>
-					  
-					  
-					  
-					  
                       <table class="table table-borderless table-hover">
                         <thead>
                           <tr>
                             <th>
                               <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="cgselect-all">
-                                <label class="custom-control-label" for="cgselect-all"></label>
+                                <input type="checkbox" class="custom-control-input" id="cdselect-all">
+                                <label class="custom-control-label" for="cdselect-all"></label>
                               </div>
                             </th>
                             <th>#</th>
                             <th>사용</th>
                             <th>코드그룹 코드</th>
                             <th>코드그룹 이름</th>
-                            <th>코드그룹 이름(영문)</th>
-                            <th>갯수</th>
+                            <th>코드</th>
+                            <th>대체 코드</th>
+                            <th>코드 이름</th>
+                            <th>코드 이름(영문)</th>
                             <th>순서</th>
                             <th>등록일</th>
                             <th>수정일</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr th:if="${#lists.isEmpty(list)}" class="hover-action-trigger btn-reval-trigger position-static">
-                            <td colspan="10">
-                            <p class="fs-0" style="padding-top: 12px;">There are no datal</p>
-                            </td>
-                          </tr>
-                          <tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
-                            <td>
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" th:id="${list.cgseq}">
-                                <label class="custom-control-label" th:for="${list.cgseq}"></label>
-                              </div>
-                            </td>
-                            <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-                            <td th:text="${list.cgUseNy}"></td>
-                            <td th:text="${list.cgseq}"></td>
-                            <td th:text="${list.cgName}"></td>
-                            <td th:text="${list.cgNameEng}"></td>
-                            <td th:text="${list.xifcdSeqCount}"></td>
-                            <td th:text="${list.cgNum}"></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
+							<tr th:if="${#lists.isEmpty(list)}" class=""hover-action-trigger btn-reval-trigger position-static>
+	                            <td colspan="10">
+	                            <p class="fs-0" style="padding-top: 12px;">There are no datal</p>
+	                            </td>
+	                          </tr>
+ 
+	                          <tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
+	                            <td>
+	                              <div class="custom-control custom-checkbox">
+	                                <input type="checkbox" class="custom-control-input" th:id="${list.cdseq}">
+	                                <label class="custom-control-label" th:for="${list.cdseq}"></label>
+	                              </div>
+	                            </td>
+	                            <td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
+	                            <td th:text="${list.cdUseNy}"></td>
+								<td th:text="${list.codeGroup_cgseq}"></td>
+								<td th:text="${list.cgName}"></td>
+								<td th:text="${list.cdseq}"></td>
+								<td th:text="${list.cdAnotherseq}"></td>
+	                            <td th:text="${list.cdName}"></td>
+	                            <td th:text="${list.cdNameEng}"></td>
+	                            <td th:text="${list.cdNum}"></td>
+	                            <td></td>
+	                            <td></td>
+	                          </tr>
                            
                            
                            
@@ -206,48 +192,6 @@
                            
                         </tbody>
                       </table>
-					  
-					  
-					  
-					  <script>
-						document.addEventListener("DOMContentLoaded", function () {
-						  // 전체 선택 체크박스
-						  const selectAllCheckbox = document.getElementById("cgselect-all");
-						  
-						  // 모든 체크박스 요소
-						  const checkboxes = document.querySelectorAll("input[type='checkbox']:not(#cgselect-all)");
-
-						  // 전체 선택 체크박스 클릭 이벤트
-						  selectAllCheckbox.addEventListener("change", function () {
-						    checkboxes.forEach(function (checkbox) {
-						      checkbox.checked = selectAllCheckbox.checked;
-						    });
-						  });
-
-						  // 각 항목 체크박스 클릭 이벤트
-						  checkboxes.forEach(function (checkbox) {
-						    checkbox.addEventListener("change", function () {
-						      updateSelectAllCheckboxState();
-						    });
-						  });
-
-						  // 전체 선택 체크박스 상태 업데이트 함수
-						  function updateSelectAllCheckboxState() {
-						    const totalCheckboxes = checkboxes.length;
-						    const checkedCheckboxes = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-
-						    if (checkedCheckboxes === totalCheckboxes) {
-						      // 모든 체크박스가 체크됨
-						      selectAllCheckbox.checked = true;
-						      selectAllCheckbox.indeterminate = false; // 중간 상태 해제
-						    }   else {
-						      // 모든 체크박스가 체크되지 않음
-						      selectAllCheckbox.checked = false;
-						      selectAllCheckbox.indeterminate = false;
-						    }
-						  }
-						});
-					  </script>
 
 
                       <div class="row"> 
@@ -265,30 +209,24 @@
                         </div>
                       </div>
 
-					  
-					   
-					  
-					  
                       <div class="col-7"> 
-						 
-		                      <nav aria-label="Table Paging" class="mb-0 text-muted">
-		                        <ul class="pagination justify-content-center mb-0;  ">
-									<li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;">
-										<a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|">
-											<i class="fa-solid fa-angle-left"></i>
-										</a>
-									</li>
-									<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
-										<a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a>
-									</li>
-									<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;">
-										<a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|">
-											<i class="fa-solid fa-angle-right"></i>
-										</a>
-									</li>
-		                        </ul>
-		                      </nav>
-						
+                      <nav aria-label="Table Paging" class="mb-0 text-muted">
+                        <ul class="pagination justify-content-center mb-0;  ">
+							<li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;">
+								<a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|">
+									<i class="fa-solid fa-angle-left"></i>
+								</a>
+							</li>
+							<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;">
+								<a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a>
+							</li>
+							<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;">
+								<a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|">
+									<i class="fa-solid fa-angle-right"></i>
+								</a>
+							</li>
+                        </ul>
+                      </nav>
                      </div>
 
                      <div class="col-3">
@@ -303,7 +241,7 @@
                         <path d="M8 8.293 6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708z"/>
                       </svg>
                     </button>
-                    <a href="/codegroup/codegroupXdmForm"> 
+                    <a href="/code/codeXdmForm"> 
                     <button type="button" class="btn btn-outline-primary">
                       +
                     </button>
@@ -448,7 +386,6 @@
           </div>
         </div>
       </main> <!-- main -->
-	
     </div> <!-- .wrapper -->
     <script src="/xdm/template/tiny/light/js/jquery.min.js"></script>
     <script src="/xdm/template/tiny/light/js/popper.min.js"></script>

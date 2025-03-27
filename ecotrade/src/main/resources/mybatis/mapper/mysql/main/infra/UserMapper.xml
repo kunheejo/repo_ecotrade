@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.module.user.UserDao">
+
+	<resultMap id="resultMapObj" type="com.example.demo.module.user.UserDto"></resultMap>
+	   
+	    <!-- <sql id="selectCommon">
+	    
+	   from code  INNER JOIN user 
+	    ON  cdseq = useq
+	    where 1=1
+	    and uDelNy = 0
+	    </sql> -->
+	    
+	    <sql id="selectCommon">
+        FROM user a
+        WHERE 1=1
+        <if test="shUseNy != null and !shUseNy.equals('')">AND a.uUseNy = #{shUseNy}</if>
+        <if test="shDelNy != null and !shDelNy.equals('')">AND a.uDelNy = #{shDelNy}</if>
+<!-- 				
+				<choose>
+					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+ -->				
+        <choose>
+            <when test="shOption == 1">AND a.useq = #{shValue}</when>
+            <when test="shOption == 2">AND a.uName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 3">AND a.uItem LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
+    </sql>
+	    
+	  <select id="selectOne" resultMap="resultMapObj">
+			   
+				select  
+					    useq,
+				        uName,
+				        uPhoneNum,
+				        uGender,
+				        uIdEmail,
+				        uBirth,
+				        uItem,
+				        uPassword,
+				        uUseNy,
+				        uDelNy
+				from user  
+				    where 1=1
+				    and uDelNy = 0
+				     and useq = #{useq}
+				     order by useq desc
+		</select>
+	    
+	    
+	    
+	    
+	   <select id="selectOneCount" resultType="Integer">
+	   	select count(*)
+	   	 <include refid = "selectCommon"></include>
+	   </select>
+	   
+	   
+
+	  <select id="selectList" resultMap="resultMapObj">
+			   select aa.* from (
+				select  
+					    a.useq,
+				        a.uName,
+				        a.uPhoneNum,
+				        a.uGender,
+				        a.uIdEmail,
+				        a.uBirth,
+				        a.uItem,
+				        a.uPassword,
+				        a.uUseNy,
+				        a.uDelNy
+		<include refid = "selectCommon"></include>
+			  order by a.useq desc
+			  ) aa
+	limit #{rowNumToShow} offset #{startRnumForMysql}
+	</select>
+	
+	
+	
+	<!-- <select id="selectCodeGroup" resultMap="resultMapObj">
+			   
+				select  
+				cgName,
+				cgseq
+				from  codeGroup
+				where 1=1  
+				and cgDelNy = 0
+				and cgUseNy = 1
+			  order by  cgseq desc
+			  
+	 
+	</select> -->
+	
+	
+	  
+	  <insert id="insert"> 
+		insert into user (	
+				    useq,
+			        uName,
+			        uPhoneNum,
+			        uGender,
+			        uIdEmail,
+			        uBirth,
+			        uItem,
+			        uPassword,
+			        uUseNy,
+			        uDelNy
+			        
+		 ) values (		
+		 	#{useq},	 
+			#{uName},
+			#{uPhoneNum},
+			#{uGender},
+			#{uIdEmail},
+			#{uBirth},
+			#{uItem},
+			#{uPassword},
+			#{uUseNy},
+			0 
+		)
+		
+		<selectKey resultType="String" keyProperty="useq" order="AFTER">
+				SELECT last_insert_id()
+		</selectKey>
+	</insert>
+	
+	
+	<update id="update">
+	update user set
+	  uName = #{uName},
+	  uPhoneNum = #{uPhoneNum},
+	  uGender = #{uGender},
+	  uUseNy = #{uUseNy},
+	  uItem = #{uItem},
+	  uIdEmail = #{uIdEmail},
+	  uPassword = #{uPassword}
+	  
+	   
+	where useq = #{useq}
+	</update>
+	
+	
+	<delete id="delete">
+		delete from user where useq=#{useq}
+	</delete>
+	
+	 <update id="uelete">
+		update user set
+		uDelNy=1
+		where useq=#{useq}
+	</update>
+	
+</mapper>

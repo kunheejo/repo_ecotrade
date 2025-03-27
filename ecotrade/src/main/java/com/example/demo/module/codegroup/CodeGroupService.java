@@ -9,11 +9,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class CodeGroupService {
 	@Autowired
-	CodeGroupDao codegroupdao;
-	public List<CodeGroupDto> selectList(){
-		return codegroupdao.selectList();
+	CodeGroupDao dao;
+	 
+	public List<CodeGroupDto> selectList(CodeGroupVo vo){
+		return dao.selectList(vo);
 	}
-	public int insert(CodeGroupDto codegroupDto) {
-		return codegroupdao.insert(codegroupDto);
+	public int insert(CodeGroupDto Dto) {
+		return dao.insert(Dto);
 	}
+	public int selectOneCount() {
+		return dao.selectOneCount();
+	}
+	 
 }

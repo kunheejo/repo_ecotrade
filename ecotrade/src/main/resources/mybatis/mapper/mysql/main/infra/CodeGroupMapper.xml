@@ -5,26 +5,65 @@
 
 	<resultMap id="resultMapObj" type="com.example.demo.module.codegroup.CodeGroupDto"></resultMap>
 	   
+	   <!--  <sql id="selectCommon">
+	    
+	    from codeGroup a 
+	    where 1=1
+	    and cgDelNy = 0
+	    </sql> -->
+	    
+	    
+	    <sql id="selectCommon">
+        FROM codeGroup a
+        WHERE 1=1 
+        <if test="shUseNy != null and !shUseNy.equals('')">AND a.cgUseNy = #{shUseNy}</if>
+        <if test="shDelNy != null and !shDelNy.equals('')">AND a.cgDelNy = #{shDelNy}</if>
+<!-- 				
+				<choose>
+					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+ -->				
+        <choose>
+            <when test="shOption == 1">AND a.cgseq = #{shValue}</when>
+            <when test="shOption == 2">AND a.cgName LIKE CONCAT('%',#{shValue},'%')</when>
+            <when test="shOption == 3">AND a.cgNameEng LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
+    </sql>
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	   <select id="selectOneCount" resultType="Integer">
+	   	select count(*)
+	   	 <include refid = "selectCommon"></include>
+	   </select>
+	   
+	   
 
 	  <select id="selectList" resultMap="resultMapObj">
-			  select 
-				    cgseq,
-					cgAnotherseq,
-					cgName,
-					cgNameEng,
-					cgUseNy,
-					cgNum,
-					cgExplanation,
-					cgDelNy 
-			  from
-				  codegroup
-			  where 1=1
-			  and cgdelNy = 0
-			  order by cgseq desc
+			   select aa.* from (
+				select  
+				    a.cgseq,
+					a.cgAnotherseq,
+					a.cgName,
+					a.cgNameEng,
+					a.cgUseNy,
+					(select count(aa.cdSeq) from Code aa where 1=1 and aa.cdDelNy = 0 and aa.codeGroup_cgseq = a.cgseq) as xifcdSeqCount,
+					a.cgNum,
+					a.cgExplanation,
+					a.cgDelNy 
+		<include refid = "selectCommon"></include>
+			  order by a.cgseq desc
+			  ) aa
+	limit #{rowNumToShow} offset #{startRnumForMysql}
 	</select>
 	  
 	  <insert id="insert"> 
-		insert into codegroup (				 
+		insert into codeGroup (				 
 				cgseq,
 				cgAnotherseq,
 				cgName,

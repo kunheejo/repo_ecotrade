@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.module.code.CodeDao">
+
+	<resultMap id="resultMapObj" type="com.example.demo.module.code.CodeDto"></resultMap>
+	   
+	    <sql id="selectCommon">
+	    
+	    from code b INNER JOIN codeGroup c 
+	    ON b.codeGroup_cgseq = c.cgseq
+	    where 1=1
+	    and cdDelNy = 0
+	    </sql>
+	    
+	    
+	    
+	   <select id="selectOneCount" resultType="Integer">
+	   	select count(*)
+	   	 <include refid = "selectCommon"></include>
+	   </select>
+	   
+	   
+
+	  <select id="selectList" resultMap="resultMapObj">
+			   select bb.* from (
+				select  
+					b.codeGroup_cgseq,
+				    b.cdseq,
+					b.cdAnotherseq,
+					b.cdName,
+					b.cdNameEng,
+					b.cdUseNy,
+					b.cdNum,
+					b.cdExplanation,
+					b.cdDelNy,
+					c.cgName,
+					c.cgseq
+		<include refid = "selectCommon"></include>
+			  order by b.cdseq desc
+			  ) bb
+	limit #{rowNumToShow} offset #{startRnumForMysql}
+	</select>
+	
+	
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+			   
+				select  
+					codeGroup_cgseq,
+				    cdseq,
+					cdAnotherseq,
+					cdName,
+					cdNameEng,
+					cdUseNy,
+					cdNum,
+					cdExplanation,
+					cdDelNy,
+					c.cgName,
+					c.cgseq
+					
+				 from code b INNER JOIN codeGroup c 
+	    		ON b.codeGroup_cgseq = c.cgseq
+				WHERE 1=1
+					AND cdDelNy = 0
+				    AND cdUseNy = 1
+					
+		</select>			
+	
+	
+	
+	<select id="selectCodeGroup" resultMap="resultMapObj">
+			   
+				select  
+				cgName,
+				cgseq
+				from  codeGroup
+				where 1=1  
+				and cgDelNy = 0
+				and cgUseNy = 1
+			  order by  cgseq desc
+			  
+	 
+	</select>
+	
+	
+	  
+	  <insert id="insert"> 
+		insert into code (	
+				codeGroup_cgseq,			 
+				cdseq,
+				cdAnotherseq,
+				cdName,
+			    cdNameEng,		
+			    cdUseNy,
+			    cdNum,
+			    cdExplanation,
+			    cdDelNy
+		 ) values (		
+		 	#{codeGroup_cgseq},	 
+			#{cdseq},
+			#{cdAnotherseq},
+			#{cdName},
+			#{cdNameEng},
+			#{cdUseNy},
+			#{cdNum},
+			#{cdExplanation},
+			0 
+		)
+		<selectKey resultType="String" keyProperty="cdseq" order="AFTER">
+				SELECT last_insert_id()
+		</selectKey>
+	</insert>
+</mapper>
